@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration status="OFF">
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout charset="utf-8"
+				pattern="%d{YYYY-MM-dd HH:mm:ss} [%logger{36}:%L] %-5level - %msg%n" />
+		</Console>
+
+
+		<RollingFile name="DailyRollingFile"
+			fileName="./logs/xph.log" filePattern="./logs/xph.%d{yyyy-MM-dd}.log">
+			<PatternLayout charset="utf-8"
+				pattern="%d{YYYY-MM-dd HH:mm:ss} [%logger{36}:%L] %-5level - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<root level="info">
+			<appender-ref ref="Console" />
+			<appender-ref ref="DailyRollingFile" />
+		</root>
+	</loggers>
+</configuration>
